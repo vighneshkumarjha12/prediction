@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 20px;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('https://source.unsplash.com/1200x900/?health,Signup/1920x1080') left/cover no-repeat;
+        }
+
+        .signup-container {
+            
+
+            background-color:white;
+            box-shadow: 0 4px 8px rgba(, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            width: 400px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h2 {
+            background-color:white;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label { 
+            background-color:white;
+            color: #333;
+            text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .signup-link {
+            margin-top: 20px;
+            font-size: 14px;
+            background-color:white;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .signup-link a {
+            color: #4caf50;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="signup-container">
+        <h2>Create an Account</h2>
+        <form action="/Signup" method="POST">
+            {% csrf_token %}
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="fname">First name</label>
+            <input type="text" id="fname" name="fname" required>
+
+            <label for="lname">last name</label>
+            <input type="text" id="lname" name="lname" required>
+
+
+            <label for="password1">Password</label>
+            <input type="password" id="pass1" name="pass1" required>
+
+            <label for="password2">Repeat password</label>
+            <input type="password" id="pass2" name="pass2" required>
+
+
+            <button type="submit">Sign Up</button>
+        </form>
+
+        <div class="signup-link">
+            Already have an account? <a href="/login">Log in here</a>.
+        </div>
+    </div>
+
+</body>
+
+</html>

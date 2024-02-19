@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block title %}Services{% endblock title %}
+
+{% block body %}
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services</title>
+    <style>
+        body {
+            background: url('services.jpg')
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        .header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .container {
+            padding: 40px;
+        }
+
+        .service {
+            margin-bottom: 30px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        p {
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header  my-3 ">
+        <h1>Our Services</h1>
+    </div>
+
+    <div class="container  my-3"  >
+        <div class="service">
+            <h2>Prediction</h2>
+            <p> Our goal is to provide accurate and accessible lung cancer 
+              
+                risk predictions to aid in early detection and prevention efforts..</p>
+                <a href="predict">predict</a>.</p>
+        </div>
+
+        <div class="service">
+            <h2>Educational Resources </h2>
+            <p>Provide a collection of educational materials about lung cancer, covering topics such as symptoms,
+                 treatment options, prevention, and the latest research. 
+                This can include articles, videos, and infographics.
+                <a href="info">Information and insghts</a>.</p>
+        </div>
+
+        <div class="service">
+            <h2>Support Groups and Community Forums</h2>
+            <p>community-building services where users can connect with others who have similar concerns. 
+              support groups for sharing experiences, 
+                asking questions, and providing emotional support...
+                <a href="https://lcf.org.in/">Community</a>.
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>
+
+{% endblock body %}
