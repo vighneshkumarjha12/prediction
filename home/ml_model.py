@@ -59,11 +59,11 @@ loss, accuracy = model.evaluate([X_images_test, X_symptoms_test], y_test)
 print(f'Test Accuracy: {accuracy * 100:.2f}%')
 
 # Make predictions on a new data point
-new_image = np.random.rand(1, 64, 64, 3)  # Replace with actual image data
+normal = np.random.rand(1, 64, 64, 3)  # Replace with actual image data
 new_symptoms = np.random.rand(1, 5)  # Replace with actual symptoms data
 new_symptoms = scaler.transform(new_symptoms)  # Standardize symptoms data
 
-prediction = model.predict([new_image, new_symptoms])
+prediction = model.predict([normal, new_symptoms])
 
 # Classify based on the threshold of 0.5
 classification = 'Positive' if prediction[0, 0] >= 0.5 else 'Negative'

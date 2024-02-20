@@ -81,7 +81,6 @@ def services(request):
 
     
 def predict(request):
-
     return render(request, 'predict.html')
 
    
