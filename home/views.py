@@ -6,6 +6,9 @@ from datetime import datetime
 from home.models import Contact
 from django.contrib import messages
 from django.contrib.auth.forms import User
+from django.contrib.auth.views import PasswordResetView
+from django.core.files.storage import FileSystemStorage
+
 from datetime import date
 import math
 from django.core.files.storage import default_storage
@@ -81,6 +84,11 @@ def services(request):
 
     
 def predict(request):
+   
+  
+
+
+
     return render(request, 'predict.html')
 
    
