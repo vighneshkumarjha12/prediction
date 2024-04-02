@@ -10,7 +10,7 @@ urlpatterns = [
     path('about', views.about, name='about'),
     path('services', views.services, name='services'),
     path('contact', views.contact, name='contact'), 
-    path('predict', views.predict, name='predict'), 
-    path('forgot_password',views.forgot_password, name='forgot_password'),
+    path('predict', views.predict, name='predict'),
     path('info', views.info, name='information'),
+    path('into', views.into, name='prediction'),
 ]

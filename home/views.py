@@ -80,7 +80,7 @@ def index(request):
     print(request.user)
     if request.user.is_anonymous:
         return redirect("/Signup") 
-    return render(request, 'predict.html')
+    return render(request, 'index.html')
 
 def about(request):
     return render(request, 'about.html') 
@@ -94,7 +94,7 @@ def predict(request):
     a=request.FILES['img']
     model = load_model("static/model/model.hdf5")
     classes_dir = [1,2,3]
-    file_name="pic.jpg"
+    file_name="pic.png"
     file_name2=default_storage.save(file_name,a)
     file_url=default_storage.url(file_name2)
     img = image.load_img(file_url, target_size=(350,350))
@@ -116,6 +116,9 @@ def predict(request):
 
 
 
+def into(request):
+
+    return render(request, 'predict.html')
  
    
    
@@ -135,27 +138,3 @@ def contact(request):
     return render(request, 'contact.html')
  
 
-def forgot_password(request):
-    
-    if request.method=="POST":
-        username = request.POST.get('username')
-       
-        print(username)
-
-        # check if user has entered correct credentials
-        user = authenticate(username=username)
-
-        if user is not None:
-            passw=request.POST['passw']
-            ruser= User.objects.create_user(passw)
-            # A backend authenticated the credentials
-            login(request, user)
-            messages.error(request, "No account found with this username and password.")
-        
-            return redirect("/")
-
-        else:
-            # No backend authenticated the credentials
-            return render(request, 'forgot_password.html')
-
-    return render(request, 'forgot_password.html')
