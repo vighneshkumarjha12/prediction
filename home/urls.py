@@ -13,4 +13,7 @@ urlpatterns = [
     path('predict', views.predict, name='predict'),
     path('info', views.info, name='information'),
     path('into', views.into, name='prediction'),
+    path('sqa', views.sqa, name='sqa'),
+    path('normal', views.normal, name='normal'),
+    path('adeno', views.adeno, name='adeno'),
 ]

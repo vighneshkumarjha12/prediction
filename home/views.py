@@ -94,7 +94,7 @@ def predict(request):
     a=request.FILES['img']
     model = load_model("static/model/model.hdf5")
     classes_dir = [1,2,3]
-    file_name="pic.png"
+    file_name="pic.jpg"
     file_name2=default_storage.save(file_name,a)
     file_url=default_storage.url(file_name2)
     img = image.load_img(file_url, target_size=(350,350))
@@ -114,6 +114,18 @@ def predict(request):
     
 
 
+def adeno(request):
+
+    return render(request, 'adeno.html')
+
+
+def sqa(request):
+
+    return render(request, 'sqa.html')
+
+def normal(request):
+
+    return render(request, 'normal.html')
 
 
 def into(request):

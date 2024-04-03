@@ -1,19 +1,66 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block content %}
 
+
+
+{% block title %}Normal{% endblock title %}
+
+{% block body %}
+<style>
+
+  body {
+
+    background-color: #e6e7ee;
+
+}
+
+.aa {
+
+    margin-top: 3%;
+
+    height: 500px;
+
+    padding: 40px;
+    border-radius: 20px;
+    box-sizing: border-box;
+    background-color: #e6e7ee;
+    box-shadow: 10px 10px 20px #b8b9be, -10px -10px 20px white;
+}
+
+.brand {
+
+    width: 70px;
+    height: 70px;
+    align-items: center;
+    border-radius: 20px;
+    box-sizing: border-box;
+    background-color: #e6e7ee;
+    box-shadow: 5px 5px 10px #b8b9be, -5px -5px 10px white;
+
+
+}
+
+.im {
+    margin: 5px 10px 10px 10px;
+}
+
+.navor {
+    background-color: #e6e7ee;
+    margin: 10px 20px 10px 10px;
+
+}
+</style>
 <div class="container head">
+  <center>
   <h4 class="an">NO CANCER CELLS DETECTED</h4>
 
 
 
 
-  <img src="{% static 'images/love.png'%}" alt="" width="300px" height="300px" class="imm">
-
-
+  <img src="/static/love.png" alt="" width="300px" height="300px" class="imm">
 
 
 </div>
-
+</center>
 
 {% endblock%}
