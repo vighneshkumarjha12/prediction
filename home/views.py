@@ -90,28 +90,52 @@ def services(request):
 
 
 
+# def predict(request):
+#     a=request.FILES['img']
+#     model = load_model("static/model/model.hdf5")
+#     classes_dir = [1,2,3]
+#     file_name="pic.png"
+#     # file_name="static/Data/test/normal/6 - Copy (2).png"
+#     file_name2=default_storage.save(file_name,a)
+#     file_url=default_storage.url(file_name2)
+#     img = image.load_img(file_url, target_size=(350,350))
+#     norm_img = image.img_to_array(img)/255
+#     input_arr_img = np.array([norm_img])
+#     pred = np.argmax(model.predict(input_arr_img))
+#     print(model.predict(input_arr_img))
+#     print(classes_dir[pred])
+#     m=classes_dir[pred]
+#     if(m==1):
+#          return render(request,'adeno.html',{'num': m})
+#     elif(m==3):
+#         return render(request,'sqa.html',{'num': m})
+#     else:
+#         return render(request,'normal.html',{'num': m})
+    
 def predict(request):
-    a=request.FILES['img']
-    model = load_model("static/model/model.hdf5")
-    classes_dir = [1,2,3]
-    file_name="pic.jpg"
-    file_name2=default_storage.save(file_name,a)
-    file_url=default_storage.url(file_name2)
-    img = image.load_img(file_url, target_size=(350,350))
-    norm_img = image.img_to_array(img)/255
-    input_arr_img = np.array([norm_img])
-    pred = np.argmax(model.predict(input_arr_img))
-    print(model.predict(input_arr_img))
-    print(classes_dir[pred])
-    m=classes_dir[pred]
-    if(m==1):
-         return render(request,'adeno.html',{'num': m})
-    elif(m==3):
-        return render(request,'sqa.html',{'num': m})
-    else:
-        return render(request,'normal.html',{'num': m})
-    
-    
+    try:
+        img = request.FILES['img']
+        model = load_model("static/model/model.hdf5")
+        classes_dir = {0: 'Normal', 1: 'Adeno', 2: 'SQA'}
+
+        file_name = default_storage.save('img.png', img)
+        file_url = default_storage.url(file_name)
+
+        img = image.load_img(file_url, target_size=(350, 350))
+        norm_img = image.img_to_array(img) / 255.0
+        input_arr_img = np.array([norm_img])
+        pred = np.argmax(model.predict(input_arr_img))
+        predicted_class = classes_dir[pred]
+
+        if predicted_class == 'Adeno':
+            return render(request, 'adeno.html', {'num': predicted_class})
+        elif predicted_class == 'SQA':
+            return render(request, 'sqa.html', {'num': predicted_class})
+        else:
+            return render(request, 'normal.html', {'num': predicted_class})
+    except Exception as e:
+        # Handle exceptions gracefully, log errors, and return an appropriate response
+        return HttpResponse("Error: {}".format(str(e)), status=500)
 
 
 def adeno(request):
