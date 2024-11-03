@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+
+{% block title %}Services{% endblock title %}
+
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CT Scan Image Prediction</title>
+    <style>
+        .back {
+            border: 1px solid;
+            border-color: #48c6bc;
+        
+            margin-left: 65px;
+            width: 1210px;
+            height: 390px;
+            border-radius: 10px;
+            box-sizing: border-box;
+            background-color: #e6e7ee;
+            box-shadow: inset 6px 6px 10px #b8b9be, inset -6px -6px 10px white;
+        
+        
+        }
+        
+        input[type="file"] {
+            display: none;
+        }
+        
+        input[type="submit"] {
+            display: none;
+        }
+        
+        .bb {
+        
+            border: 1px solid;
+            border-color: #48c6bc;
+            text-align: center;
+            margin-top: 10%;
+            margin-left: 5%;
+            padding-top: 20px;
+            text-align: center;
+        
+            border-radius: 15px;
+            width: 200px;
+            height: 70px;
+            box-sizing: border-box;
+            background-color: #e6e7ee;
+            box-shadow: 3px 3px 6px #b8b9be, -3px -3px 6px white;
+        }
+        
+        .bb:hover {
+        
+        
+        
+        
+            border: 1px solid;
+            border-color: #48c6bc;
+            text-align: center;
+            margin-top: 10%;
+            margin-left: 5%;
+            padding-top: 20px;
+            border-radius: 15px;
+            width: 200px;
+            height: 70px;
+            box-sizing: border-box;
+            background-color: #e6e7ee;
+            box-shadow: inset 3px 3px 6px #b8b9be, inset -3px -3px 6px white;
+        }
+        
+        
+        
+        
+        
+        .ele {
+            border: 1px solid;
+            border-color: #48c6bc;
+            margin-top: 5%;
+            height: 290px;
+            width: 290px;
+            padding: 40px;
+            border-radius: 20px;
+            box-sizing: border-box;
+            background-color: #e6e7ee;
+            box-shadow: 6px 6px 10px #b8b9be, -6px -6px 10px white;
+        
+        }
+    </style>
+</head>
+
+<body>
+   
+<div class="container back my-3">
+    <div class="row">
+      <div class=" col-md-3 offset-md-1 ele">
+        <img id="blah" src="/static/4.jpg" alt="image" width="200px" height="200px"
+          style="border-radius:10px;">
+  
+      </div>
+  
+  
+  
+      <div class=" col-md-3 offset-md-4  ele">
+        <form action="predict" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <label for="img" class="bb"><a> <i class="fas fa-upload" style="color:#48c6bc"></i> &nbsp; Upload CT Image</a>
+          </label>
+          <input type="file" id="img" name="img" accept="image/*"
+            onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])">
+  
+          <label class="bb" for="pp"><i class="fas fa-search" style="color:#48c6bc"> </i> &nbsp;Predict Type </label>
+          <input type="submit" id="pp">
+
+  
+  
+        </form>
+  
+      </div>
+    </div>
+  </div>
+</body>
+{% endblock body %}
+</html>

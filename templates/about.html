@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}About{% endblock title %}
+
+{% block body %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <center>
+      <img src="\static\about.jpg"   class="carousel-indicators-fluid my-3" 
+      height="500px" m="100" width="1000px" alt="...">
+        <h1>About Us</h1></center>
+        <h3>Welcome to our Lung Cancer Prediction Web App!
+           We are a dedicated team of researchers and developers working towards improving
+            healthcare outcomes. Our goal is to provide accurate and accessible lung cancer 
+            risk predictions to aid in early detection and prevention efforts.</H3>
+        <p>If you have any questions or feedback, please don't hesitate to 
+            <a href="contact">contact us</a>.</p>
+    </div>
+</body>
+
+</html>
+{% endblock body %}
