@@ -112,29 +112,45 @@ def services(request):
 #     else:
 #         return render(request,'normal.html',{'num': m})
     
+model = load_model("static/model/model.hdf5")
+classes_dir = {0: 'Normal', 1: 'Adeno', 2: 'SQA'}
+
 def predict(request):
     try:
+        # Fetch uploaded image file
         img = request.FILES['img']
-        model = load_model("static/model/model.hdf5")
-        classes_dir = {0: 'Normal', 1: 'Adeno', 2: 'SQA'}
-
+        
+        # Save the file and get full path
         file_name = default_storage.save('img.png', img)
-        file_url = default_storage.url(file_name)
-
-        img = image.load_img(file_url, target_size=(350, 350))
-        norm_img = image.img_to_array(img) / 255.0
+        file_path = default_storage.path(file_name)
+        
+        # Load and preprocess image
+        img = image.load_img(file_path, target_size=(350, 350))
+        norm_img = image.img_to_array(img) / 255.0  # normalize as during training
         input_arr_img = np.array([norm_img])
-        pred = np.argmax(model.predict(input_arr_img))
-        predicted_class = classes_dir[pred]
+        
+        # Model prediction
+        prediction = model.predict(input_arr_img)
+        confidence = np.max(prediction)
+        pred_class_index = np.argmax(prediction)
+        predicted_class = classes_dir[pred_class_index]
 
+        # Optional confidence threshold (tune based on model performance)
+        confidence_threshold = 0.6
+        if confidence < confidence_threshold:
+            predicted_class = "Uncertain"
+
+        # Render appropriate template
         if predicted_class == 'Adeno':
-            return render(request, 'adeno.html', {'num': predicted_class})
+            return render(request, 'adeno.html', {'num': predicted_class, 'confidence': confidence})
         elif predicted_class == 'SQA':
-            return render(request, 'sqa.html', {'num': predicted_class})
+            return render(request, 'sqa.html', {'num': predicted_class, 'confidence': confidence})
+        elif predicted_class == 'Normal':
+            return render(request, 'normal.html', {'num': predicted_class, 'confidence': confidence})
         else:
-            return render(request, 'normal.html', {'num': predicted_class})
+            return render(request, 'uncertain.html', {'num': 'Uncertain', 'confidence': confidence})
+
     except Exception as e:
-        # Handle exceptions gracefully, log errors, and return an appropriate response
         return HttpResponse("Error: {}".format(str(e)), status=500)
 
 
